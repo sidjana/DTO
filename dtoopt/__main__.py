@@ -1,3 +1,7 @@
+# Copyright (C) 2023 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 from dtoopt.cli import parse_args
 from dtoopt.core import run
 
