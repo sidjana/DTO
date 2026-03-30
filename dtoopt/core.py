@@ -98,13 +98,12 @@ def extract_metric(output_text: str, metric_pattern: re.Pattern) -> float:
     if not matches:
         raise ValueError("Metric regex did not match command output")
 
-    last_match = matches[-1]
-    if isinstance(last_match, tuple):
-        value_str = last_match[0]
-    else:
-        value_str = last_match
+    is_tuple_matches = isinstance(matches[0], tuple)
+    total = 0.0
+    for match in matches:
+        total += float(match[0] if is_tuple_matches else match)
 
-    return float(value_str)
+    return total
 
 
 def evaluate_trial(
