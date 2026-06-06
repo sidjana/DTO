@@ -228,13 +228,16 @@ When linking DTO using LD_PRELOAD environment variable special care is required 
 
 ## DTO Parameter Optimization (dtoopt)
 
-DTO includes a standalone Bayesian optimization tool under `dtoopt/` that tunes the following three DTO environment variables:
+DTO includes a standalone Bayesian optimization tool under `dtoopt/` that tunes the following DTO environment variables:
 
 - `DTO_MIN_BYTES`
 - `DTO_CPU_SIZE_FRACTION`
-- `DTO_AUTO_ADJUST_KNOBS`
 
-The tool runs a user-provided workload command multiple times, sets trial DTO values as environment variables for each run, extracts a metric from workload output, and returns the best parameter combination.
+Before dtoopt begins optimization, it should set `DTO_AUTO_ADJUST_KNOBS=0` so DTO's internal auto-tuning is disabled during the search. In other words, dtoopt optimizes `DTO_MIN_BYTES` and `DTO_CPU_SIZE_FRACTION` with `DTO_AUTO_ADJUST_KNOBS` fixed to `0`.
+
+For standalone sweep/plot utilities, see `dtoopt/scripts/README.md`.
+
+The tool runs a user-provided workload command multiple times, sets trial DTO values as environment variables for each run, forces `DTO_AUTO_ADJUST_KNOBS=0`, extracts a metric from workload output, and returns the best parameter combination.
 
 ### Prerequisites
 

@@ -32,4 +32,4 @@ dtoopt-install:
 	@echo "dtoopt installed. If needed, add ~/.local/bin to PATH"
 
 clean:
-	rm -rf *.o *.so dto-test
+	rm -rf *.o *.so dto-test dto-test-wodto

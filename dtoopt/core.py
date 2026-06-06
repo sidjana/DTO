@@ -16,7 +16,7 @@ from typing import Dict, List, Tuple
 
 try:
     from skopt import gp_minimize
-    from skopt.space import Categorical, Integer, Real
+    from skopt.space import Integer, Real
 except ImportError:
     print(
         "Missing dependency: skopt. Install with: pip install scikit-optimize",
@@ -65,7 +65,6 @@ def build_search_space(args):
             prior="uniform",
             name="DTO_CPU_SIZE_FRACTION",
         ),
-        Categorical(categories=[0, 1], name="DTO_AUTO_ADJUST_KNOBS"),
     ]
 
 
@@ -88,12 +87,11 @@ def sanitize_params(point: List[object], args) -> Dict[str, str]:
         args.cpu_fraction_high,
         args.cpu_fraction_step,
     )
-    auto_adjust = int(point[2])
 
     return {
         "DTO_MIN_BYTES": str(min_bytes),
         "DTO_CPU_SIZE_FRACTION": f"{cpu_fraction:.4f}",
-        "DTO_AUTO_ADJUST_KNOBS": str(auto_adjust),
+        "DTO_AUTO_ADJUST_KNOBS": "0",
     }
 
 

@@ -19,13 +19,6 @@ This folder contains the standalone DTO parameter optimization tool.
 - `pyproject.toml` and `setup.py`
   Packaging/build metadata for installing `dtoopt` via `pip install ./dtoopt`.
 
-- `workload_probe.sh`  
-  Helper wrapper that runs `dto-test-wodto` and prints a parseable metric line (`completed <N> ops`) for optimizer runs.
-
-## Generated / runtime artifacts
-
-- `__pycache__/`  
-  Python bytecode cache generated automatically at runtime.
 
 ## Typical outputs (for normal usage)
 
